@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Mustafa Gündoğdu",
+        "tel": "0687315751",
+        "address": "Haagse Schouwweg 8A",
+        "Barkod": 9789751041098,
+        "Kitap_Adi": "Son Ada",
+        "Yazar": "Zülfü Livaneli",
+        "Yayinevi": "İnkılap Kitabevi",
+        "Dil": "Türkçe",
+        "Fiyat": 18.2,
+        "lending_date": "2025-01-13 16:29:37",
+        "return_date": "2025-01-27"
+    },
+    {
+        "id": 5,
+        "name": "Özlem Evrim",
+        "tel": "53260985",
+        "address": "Utrect",
+        "Barkod": 9786052361801,
+        "Kitap_Adi": "Karantina",
+        "Yazar": "Beyza Alkoç",
+        "Yayinevi": "İndigo Kitap",
+        "Dil": "Icerik Yok",
+        "Fiyat": 30.0,
+        "lending_date": "2025-01-13 16:38:08",
+        "return_date": "2025-01-27"
+    }
+]
