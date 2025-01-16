@@ -1,0 +1,57 @@
+def add_member(members, name, tel, address):
+    # ID'yi otomatik olarak belirle
+    member_id = len(members) + 1
+
+    # Eğer aynı ID'ye sahip bir üye varsa
+    if member_id in members:
+        return "Bu üye zaten mevcut."
+
+    # Üye bilgilerini ekleyelim
+    members[member_id] = { "id": member_id, "uye_adi": name, "tel": tel,    "adres": address }
+    return f"Üye başarıyla eklendi: {name}"
+
+
+def update_member(members, member_id, new_name):
+    if member_id not in members:
+        return "Üye bulunamadı."
+
+    members[member_id]["uye_adi"] = new_name
+    return f"Üye adı başarıyla güncellendi: {new_name}"
+
+
+def search_member(members, member_id):
+    if member_id not in members:
+        return "Üye bulunamadı."
+
+    member_info = members[member_id]
+    return f"Üye Bilgisi: {member_info}"
+
+
+def delete_member(members, member_id):
+    if member_id not in members:
+        return "Üye bulunamadı."
+
+    del members[member_id]
+    return f"Üye başarıyla silindi: {member_id}"
+
+
+def save_to_json(members, filename):
+    try:
+        # JSON formatına dönüştürülüp dosyaya kaydediliyor
+        with open(filename, "w") as f:
+            json.dump(members, f, default=str)  # default=str, datetime gibi nesneleri serialize eder
+        return f"Veri {filename} dosyasına başarıyla kaydedildi."
+    except Exception as e:
+        return f"Veri kaydedilirken bir hata oluştu: {e}"
+
+
+def load_from_json(filename):
+    try:
+        if not os.path.exists(filename):
+            return f"Dosya bulunamadı: {filename}"
+
+        with open(filename, "r") as f:
+            members = json.load(f)
+        return members
+    except Exception as e:
+        return f"Veri yüklenirken bir hata oluştu: {e}"
