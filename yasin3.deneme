@@ -1,8 +1,7 @@
-import kitap_islemleri
+import file_transactions
 import json
 import os
-#try exceptionlar
-#listeleme yapılacak
+
 
 member = dict()
 member["id"]= member_id
@@ -42,39 +41,9 @@ def uye_ekle(Uye_Adi, Tel, Adres):
     members.append({"id": member_id, "uye_adi": name, "tel":tel, })
 
     file_transactions.save_file(members_file, members)
-    print("Newstask added successfully")
+    print("New member     added successfully")
     return True
-
-
-
-    if len(members) == 0:
-        member_id = 1
-    else:
-        member_id = max(member["id"] for member in members) + 1
-    name = input("Enter the member's name and surname: ").strip()
-    tel = input("Enter the member's phone number: ")
-    address = input("Enter the member's address: ")
-    member = {"id": member_id,"name": name,"tel": member_tel,"address": member_address}
-    members.append(member)
-    print("Member added successfully.")
-    file_transactions.save_file(members_file, members)
-    return members
-
-    id=1
-
-    Uye_Adi=input("Adınızı soyadınızı girin :").strip()
-
-    tel_number=input("Telefon numaranızı girin  :")
-    for i in uye_listesi:
-        if tel_number in uye_listesi:
-            return "Telefon numarası zaten bir uye uzerıne kayıtlı"
-    Adres=input("Adresinizi girin :")
-    uye={"Uye Adı Soyadı": Uye_Adi,"Uye telefon numarası": tel_number,  "Uye adresi": Adres}
-    uye_listesi.append(uye)
-
-    save_file(uye_listesi, uye)
-
-    print(f" {Uye_Adi} başarıyla kayıt edildi")
+   
 #uye arama
 def uye_ara(Uye_Adi):
     try:
