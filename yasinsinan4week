@@ -1,12 +1,9 @@
 def add_member(members, name, tel, address):
-    # ID'yi otomatik olarak belirle
     member_id = len(members) + 1
-
-    # Eğer aynı ID'ye sahip bir üye varsa
     if member_id in members:
         return "Bu üye zaten mevcut."
 
-    # Üye bilgilerini ekleyelim
+    # Üye bilgilerini ekliyoruz
     members[member_id] = { "id": member_id, "uye_adi": name, "tel": tel,    "adres": address }
     return f"Üye başarıyla eklendi: {name}"
 
@@ -17,14 +14,21 @@ def update_member(members, member_id, new_name):
 
     members[member_id]["uye_adi"] = new_name
     return f"Üye adı başarıyla güncellendi: {new_name}"
+    
+def uye_ara(Uye_Adi):
+    try:
 
+        with open("Uye.json", "r", encoding="utf-8") as file:
+            uye_listesi = json.load(file)
+    except FileNotFoundError:
+        # Dosya yoksa arama yapmıyor
+        return None
 
-def search_member(members, member_id):
-    if member_id not in members:
-        return "Üye bulunamadı."
+    for mevcut_uye in uye_listesi:
+        if mevcut_uye.get("Uye Adı Soyadı ") == Uye_Adi:
+            return mevcut_uye
 
-    member_info = members[member_id]
-    return f"Üye Bilgisi: {member_info}"
+    return None
 
 
 def delete_member(members, member_id):
@@ -37,9 +41,9 @@ def delete_member(members, member_id):
 
 def save_to_json(members, filename):
     try:
-        # JSON formatına dönüştürülüp dosyaya kaydediliyor
+        # JSON formatına dönüştürülüp dosyaya kaydetmek için
         with open(filename, "w") as f:
-            json.dump(members, f, default=str)  # default=str, datetime gibi nesneleri serialize eder
+            json.dump(members, f, default=str)  
         return f"Veri {filename} dosyasına başarıyla kaydedildi."
     except Exception as e:
         return f"Veri kaydedilirken bir hata oluştu: {e}"
