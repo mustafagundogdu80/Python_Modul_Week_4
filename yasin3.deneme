@@ -46,13 +46,7 @@ def uye_ekle(Uye_Adi, Tel, Adres):
    
 #uye arama
 def uye_ara(Uye_Adi):
-    try:
-
-        with open("Uye.json", "r", encoding="utf-8") as file:
-            uye_listesi = json.load(file)
-    except FileNotFoundError:
-        # Dosya yoksa arama yapılamaz
-        return None
+    
 
     for mevcut_uye in uye_listesi:
         if mevcut_uye.get("Uye Adı Soyadı ") == Uye_Adi:
@@ -62,7 +56,8 @@ def uye_ara(Uye_Adi):
 
 #uye sil
 def uye_sil(silinecek_uye):
-    for i in uye_listesi:
+    silinecek_uye=input("Silinecek uyenin Id si yazın :")
+    for i in member:
         if i["id"] == uye_id:
             members.remove(member)
             print("Member deleted successfully.")
