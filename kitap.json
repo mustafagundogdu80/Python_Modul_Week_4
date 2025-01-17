@@ -1,5 +1,13 @@
 [
     {
+        "Barkod": 97860531147721,
+        "Dil": "Türkçe",
+        "Fiyat": 20.4,
+        "Kitap_Adi": "Süt Lekesi",
+        "Yayinevi": "Destek Yayınları",
+        "Yazar": "Esra Ezmeci"
+    },
+    {
         "Barkod": 9786053114772,
         "Dil": "Türkçe",
         "Fiyat": 20.4,
