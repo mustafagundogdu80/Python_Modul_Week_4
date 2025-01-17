@@ -5,7 +5,14 @@ def add_member(members, name, tel, address):
 
     # Üye bilgilerini ekliyoruz
     members[member_id] = { "id": member_id, "uye_adi": name, "tel": tel,    "adres": address }
-    return f"Üye başarıyla eklendi: {name}"
+    try:
+        # JSON formatına dönüştürülüp dosyaya kaydetmek için
+        with open(filename, "w") as f:
+            json.dump(members, f, default=str)  
+        return f"Veri {filename} dosyasına başarıyla kaydedildi."
+        except Exception as e:
+        return f"Veri kaydedilirken bir hata oluştu: {e}"
+    
 
 
 def update_member(members, member_id, new_name):
@@ -16,13 +23,15 @@ def update_member(members, member_id, new_name):
     return f"Üye adı başarıyla güncellendi: {new_name}"
     
 def uye_ara(Uye_Adi):
-    try:
+   try:
+        if not os.path.exists(filename):
+            return f"Dosya bulunamadı: {filename}"
 
-        with open("Uye.json", "r", encoding="utf-8") as file:
-            uye_listesi = json.load(file)
-    except FileNotFoundError:
-        # Dosya yoksa arama yapmıyor
-        return None
+        with open(filename, "r") as f:
+            members = json.load(f)
+        return members
+    except Exception as e:
+        return f"Veri yüklenirken bir hata oluştu: {e}"
 
     for mevcut_uye in uye_listesi:
         if mevcut_uye.get("Uye Adı Soyadı ") == Uye_Adi:
@@ -39,23 +48,4 @@ def delete_member(members, member_id):
     return f"Üye başarıyla silindi: {member_id}"
 
 
-def save_to_json(members, filename):
-    try:
-        # JSON formatına dönüştürülüp dosyaya kaydetmek için
-        with open(filename, "w") as f:
-            json.dump(members, f, default=str)  
-        return f"Veri {filename} dosyasına başarıyla kaydedildi."
-    except Exception as e:
-        return f"Veri kaydedilirken bir hata oluştu: {e}"
 
-
-def load_from_json(filename):
-    try:
-        if not os.path.exists(filename):
-            return f"Dosya bulunamadı: {filename}"
-
-        with open(filename, "r") as f:
-            members = json.load(f)
-        return members
-    except Exception as e:
-        return f"Veri yüklenirken bir hata oluştu: {e}"
